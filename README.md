@@ -12,6 +12,6 @@ Autofirewall: A script I made to automatically add a list of exe files or all ex
 
 Restore corrupted system files: A simple automated script I made to run dism restorehealth and sfc scannow back to back.
 
-Windows Modding Discord: https://discord.gg/hzScjC9re6\n
+Windows Modding Discord: https://discord.gg/hzScjC9re6
 
 Windows Modding Reddit: https://www.reddit.com/r/WindowsModding
