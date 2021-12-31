@@ -1,7 +1,9 @@
 ##########
 # Win10 Initial Setup Script
+# Script credit: https://www.youtube.com/watch?v=PdKMiFKGQuc
+# Script contributor: Windows Modding Discord @ https://discord.gg/hzScjC9re6
 # Author: Disassembler <disassembler@dasm.cz>
-# Version: 1.4, 2016-01-16
+# Version: 1.6, 2021
 ##########
 
 # Ask for elevated permissions if required
@@ -246,6 +248,18 @@ Set-NetConnectionProfile -NetworkCategory Private
 
 # Enable Lock screen
 # Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen"
+
+#Disable first sign-in animation (can be skipped with CTRL+ALT+DEL)
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableFirstLogonAnimation" /t REG_DWORD /d "0" /f
+
+#Enable first sign-in animation
+#reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableFirstLogonAnimation" /t REG_DWORD /d "1" /f
+
+#Show seconds on clock
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSecondsInSystemClock" /t REG_DWORD /d "1" /f
+
+#Hide seconds on clock
+#reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSecondsInSystemClock" /t REG_DWORD /d "0" /f
 
 # Disable Autoplay
  Write-Host "Disabling Autoplay..."
