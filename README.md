@@ -1,5 +1,5 @@
 # NT-Scripts
-A collection of scripts I've created or edited to de-crapify Windows.
+A collection of scripts I've created or edited to de-crapify/improve or fix Windows.
 
 This is a collection of scripts I've created or edited to de-crapify Windows, specifically Windows 10 but it'll probably work with little compatibility issues for Windows 7 and newer.
 
