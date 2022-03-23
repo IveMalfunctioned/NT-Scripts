@@ -13,4 +13,4 @@ Autofirewall: A script I made to automatically add a list of exe files or all ex
 
 Restore corrupted system files: A simple automated script I made to run dism restorehealth and sfc scannow back to back.
 
-cmdsys & powershellsys: Scripts to run command prompt and powershell as SYSTEM (higher privileges than Administrator) using psexec. See the readme file inside.
+terminal-SYSTEM: Scripts to run command prompt and powershell as SYSTEM (higher privileges than Administrator) using psexec. See the readme file inside.
