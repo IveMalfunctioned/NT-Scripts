@@ -12,4 +12,5 @@ Create a shortcut to each vbs script, cmdsys.vbs and powershellsys.vbs, and plac
 System: C:\ProgramData\Microsoft\Windows\Start Menu\Programs
 User:   %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
 Command prompt shortcut would usually go in the "Windows System" folder, and powershell shortcut in the "Windows Powershell" folder.
+Put the icons on the start menu shortcuts if you like. It requires a restart for them to apply correctly. Place them in System32 if you will use them.
 Have fun!
