@@ -15,4 +15,4 @@ Restore corrupted system files: A simple automated script I made to run dism res
 
 terminal-SYSTEM: Scripts to run command prompt and powershell as SYSTEM (higher privileges than Administrator) using psexec. See the readme file inside.
 
-Grant Full Control of All Files: A script to grant Administrators full control of all files on C:\ (well almost all, but you can add more files/directories if needed). May not work for every single file, so run this with terminal-SYS, use Command Prompt with SYSTEM permissions. Note that this script will take a while to run, so you'll probably want to run it overnight.
+Grant Full Control of All Files: A script to grant Administrators full control of all files on C:\ (well almost all, but you can add more files/directories if needed). May not work for every single file, so run this with terminal-SYS, use Command Prompt with SYSTEM permissions. Note that this script will take a while to run, so you'll probably want to run it overnight. Run it with as little programs running as possible to prevent conflicts.
