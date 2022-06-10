@@ -1,4 +1,4 @@
-::Run this with terminal-SYS, use Command Prompt with SYSTEM permissions.
+::Run this with terminal-SYS or ExecTI, use Command Prompt with SYSTEM/TI permissions.
 ::Add more files or directories if needed
 ::NOTE - This will take a while to run, so you'll probably want to run it overnight. Run it with as little programs running as possible to prevent conflicts.
 takeown /f "C:\Program Files" /a /r /d Y
