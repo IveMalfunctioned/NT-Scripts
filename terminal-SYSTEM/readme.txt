@@ -14,3 +14,5 @@ User:   %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
 Command prompt shortcut would usually go in the "Windows System" folder, and powershell shortcut in the "Windows Powershell" folder.
 Put the icons on the start menu shortcuts if you like. It requires a restart for them to apply correctly. Place them in System32 if you will use them.
 Have fun!
+
+NOTE: Running as SYSTEM is not the highest possible privileges one can get. It's running as TrustedInstaller that is the highest privileges. To run programs as TI, use ExecTI: https://winaero.com/execti/
