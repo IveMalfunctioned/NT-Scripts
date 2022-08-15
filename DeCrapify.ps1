@@ -112,6 +112,7 @@ Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
 Write-Host "Uninstalling Edge Chromium..."
 Start-Process cmd.exe "/c cd %PROGRAMFILES(X86)%\Microsoft\Edge\Application\8*\Installer & setup.exe --uninstall --force-uninstall --system-level"
 Start-Process cmd.exe "/c cd %PROGRAMFILES(X86)%\Microsoft\Edge\Application\9*\Installer & setup.exe --uninstall --force-uninstall --system-level"
+Start-Process cmd.exe "/c cd %PROGRAMFILES(X86)%\Microsoft\Edge\Application\1*\Installer & setup.exe --uninstall --force-uninstall --system-level"
 Start-Process cmd.exe "/c cd %PROGRAMFILES(X86)%\Microsoft\EdgeCore\Application\9*\Installer & setup.exe --uninstall --force-uninstall --system-level"
 
 # Restrict Windows Update P2P only to local network
