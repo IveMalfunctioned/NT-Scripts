@@ -3,8 +3,8 @@ Download PSTools from Microsoft Sysinternals - https://download.sysinternals.com
 Extract the ZIP.
 Place the psexec/psexec64 (depending on system architecture) file into C:\Windows\System32
 Create 2 shortcuts (Remove the '64' if you chose the x86 file): 
-Command Prompt target (named "cmdsyslnk"):                    PsExec64 -i -s cmd.exe && exit
-Windows Powershell target (named "powershellsyslnk"):         PsExec64 -i -s powershell
+Command Prompt target (named "cmdsyslnk"):                    PsExec64 -i -s /accepteula cmd.exe && exit
+Windows Powershell target (named "powershellsyslnk"):         PsExec64 -i -s /accepteula powershell
 Make sure the shortcuts require administrator permissions in the compatibility tab of the file properties.
 Place the command prompt shortcut as well as cmdsys.vbs in C:\Windows\System32
 Place the powershell shortcut as well as pssys.vbs in C:\Windows\System32\WindowsPowerShell\v1.0
