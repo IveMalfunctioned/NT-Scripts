@@ -19,3 +19,5 @@ NOTE: Running as SYSTEM is not the highest possible privileges one can get. It's
 Grant Full Control of All Files: A script to grant Administrators full control of all files on C:\ (well almost all, but you can add more files/directories if needed). May not work for every single file, so run this with terminal-SYS, use Command Prompt with SYSTEM permissions. Note that this script will take a while to run, so you'll probably want to run it overnight. Run it with as little programs running as possible to prevent conflicts.
 
 Shutdown: A convenient little script to shut down your PC in a specified integer of seconds. Must be ran as administrator or else it will not function properly.
+
+Download-AppxPackage: A powershell script with a function to download appx-packages and their dependencies from Microsoft Store links, as well as a function to install all packages in a specified directory. Originally by AJ Wilson.
