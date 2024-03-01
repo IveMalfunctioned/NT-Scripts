@@ -1,12 +1,12 @@
 :: Includes bits from https://rentry.org/uninstalledge and https://winaero.com/how-to-uninstall-and-remove-edge-browser-in-windows-10/
 :: Created by IveMalfunctioned
 :: This script requires WIMTweak.exe, which you can download from archived pages of the above Winaero link.
-
-@setlocal DisableDelayedExpansion
 @echo off
+@setlocal DisableDelayedExpansion
 if defined PROCESSOR_ARCHITEW6432 start %SystemRoot%\Sysnative\cmd.exe /c "%0 " &exit
 reg.exe query "HKU\S-1-5-19" 1>nul 2>nul || (echo Run the script as TrustedInstaller with ExecTI&goto :TheEnd)
 
+set root=%cd%
 set "u_path=%LocalAppData%\Microsoft"
 set "s_path=%ProgramFiles(x86)%\Microsoft"
 if /i %PROCESSOR_ARCHITECTURE%==x86 (if not defined PROCESSOR_ARCHITEW6432 (
@@ -31,6 +31,8 @@ taskkill /im identity_helper.exe /f >NUL 2>&1
 sc stop "MicrosoftEdgeElevationService" >NUL 2>&1
 sc stop "edgeupdate" >NUL 2>&1
 sc stop "edgeupdatem" >NUL 2>&1
+
+PAUSE
 
 echo.
 echo Attempting setup uninstall...
@@ -85,11 +87,15 @@ echo Internal...
 start "" /w "%%i\installer\setup.exe" --uninstall --msedge-internal --system-level --verbose-logging --force-uninstall --delete-profile
 )
 
+PAUSE
+
 echo.
 echo Removing program entry...
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge" /f 2>nul
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge Update" /f 2>nul
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView" /f 2>nul
+
+PAUSE
 
 echo.
 echo Removing scheduled tasks and services...
@@ -98,6 +104,8 @@ schtasks /delete /tn "MicrosoftEdgeUpdateTaskMachineUA" /f 2>nul
 sc config "MicrosoftEdgeElevationService" start=disabled >NUL 2>&1
 sc config "edgeupdate" start=disabled >NUL 2>&1
 sc config "edgeupdatem" start=disabled >NUL 2>&1
+
+PAUSE
 
 echo.
 echo Removing edge...
@@ -110,6 +118,8 @@ cd /d "C:\Program Files (x86)\Microsoft\Edge" 2>nul && del /f /s /q * 2>nul
 cd /d "C:\Program Files (x86)\Microsoft\EdgeCore" 2>nul && del /f /s /q * 2>nul
 cd /d "C:\Program Files (x86)\Microsoft\EdgeUpdate" 2>nul && del /f /s /q * 2>nul
 cd /d "C:\Program Files (x86)\Microsoft\EdgeWebView" 2>nul && del /f /s /q * 2>nul
+
+PAUSE
 
 echo.
 echo Removing registry integrations...
@@ -183,7 +193,6 @@ reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\Shell\Associations\UrlA
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\Shell\Associations\UrlAssociations\microsoft-edge-holographic" /f 2>nul
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store" /v "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" /f 2>nul
 
-
 reg load "hku\Default" "C:\Users\Default\NTUSER.DAT"
 reg delete "HKEY_USERS\Default\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.htm" /f 2>nul
 reg delete "HKEY_USERS\Default\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.html" /f 2>nul
@@ -213,16 +222,22 @@ reg delete "HKEY_USERS\Default\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppC
 reg unload "hku\Default"
 echo Removed edge file assocation. You may need to reset your default apps for HTML, PDF, SVG, and WEBP files.
 
+PAUSE
+
 echo.
 echo Removing shortcuts...
 del /f /q "%AppData%\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge*.lnk" 2>nul
 del /f /q "%SystemRoot%\System32\config\systemprofile\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge*.lnk" 2>nul
 del /f /q "%HOMEPATH%\Desktop\Microsoft Edge*.lnk" 2>nul
+del /f /q "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Microsoft Edge*.lnk" 2>nul
+del /f /q "%USERPROFILE%\Desktop\Microsoft Edge*.lnk" 2>nul
 del /f /q "%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge*.lnk" 2>nul
-cd /d "%~dp0"
+cd /d "%root%"
 WIMTweak.exe /o /l
 WIMTweak.exe /o /c Microsoft-Windows-Internet-Browser-Package /r
 WIMTweak.exe /h /o /l
+
+PAUSE
 
 echo.
 echo Preventing edge from re-installing...
@@ -344,9 +359,13 @@ reg add "HKLM\SOFTWARE\Microsoft\EdgeUpdate" /v DoNotUpdateToEdgeWithChromium /t
 	echo Set WshShell = Nothing
 ) > "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\uninstall_edge.vbs"
 
+PAUSE
+
 echo.
 if %removeIE%==1 goto remove_IE
 :return1
+
+PAUSE
 
 echo.
 choice /C YN /N /M "The Microsoft Store may have been broken, check that it still works. Reinstall it? (requires internet) (this will download and install the latest version and its dependencies) [y/n]: "
