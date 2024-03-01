@@ -18,7 +18,7 @@ param (
   process {
     $Path = (Resolve-Path $Path).Path
     #Get Urls to download
-    $WebResponse = Invoke-WebRequest -UseBasicParsing -Method 'POST' -URL 'https://store.rg-adguard.net/api/GetFiles' -Body "type=url&url=$URL&ring=Retail" -ContentType 'application/x-www-form-urlencoded'
+    $WebResponse = Invoke-WebRequest -UseBasicParsing -Method 'POST' -Uri 'https://store.rg-adguard.net/api/GetFiles' -Body "type=url&url=$URL&ring=Retail" -ContentType 'application/x-www-form-urlencoded'
     $LinksMatch = $WebResponse.Links | where {$_ -like '*.appx*'} | where {$_ -like '*_neutral_*' -or $_ -like "*_"+$env:PROCESSOR_ARCHITECTURE.Replace("AMD","X").Replace("IA","X")+"_*"} | Select-String -Pattern '(?<=a href=").+(?=" r)'
     $DownloadLinks = $LinksMatch.matches.value 
 
@@ -40,7 +40,7 @@ param (
     }
     #Download Urls
     foreach($url in $DownloadLinks){
-        $FileRequest = Invoke-WebRequest -URL $url -UseBasicParsing #-Method Head
+        $FileRequest = Invoke-WebRequest -Uri $url -UseBasicParsing #-Method Head
         $FileName = ($FileRequest.Headers["Content-Disposition"] | Select-String -Pattern  '(?<=filename=).+').matches.value
         $FilePath = Join-Path $Path $FileName; $FilePath = Resolve-NameConflict($FilePath)
         [System.IO.File]::WriteAllBytes($FilePath, $FileRequest.content)
